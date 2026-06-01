@@ -69,15 +69,14 @@
 import { ref, onMounted, watch, onBeforeUnmount } from 'vue'
 import axios from 'axios'
 import { useRoute } from 'vue-router'
-// import { useCafeStore } from 'stores/cafefavorites' // Not used or missing
+import { useUserStore } from '@/stores/user'
 
 const user = ref({ name: '' })
 const favoriteCafes = ref([])
 const loading = ref(true)
 const route = useRoute()
-// const cafeStore = useCafeStore() // Not used or missing
+const userStore = useUserStore()
 
-// Axios config with base URL and token
 const api = axios.create({
   baseURL: 'http://127.0.0.1:8000',
   headers: {
@@ -85,14 +84,9 @@ const api = axios.create({
   },
 })
 
-// Fetch user profile
 const getUserProfile = async () => {
-  try {
-    const response = await api.get('/api/user/profile/')
-    user.value.name = response.data.name || 'User'
-  } catch (error) {
-    console.error('Error fetching user profile:', error)
-  }
+  const u = userStore.user
+  user.value.name = u.firstName ? `${u.firstName} ${u.lastName}`.trim() : 'User'
 }
 
 // Fetch favorite cafes
@@ -112,8 +106,8 @@ const getFavorites = async () => {
           }
         } else if (item.id && item.name) {
           return {
-            id: item.cafe.id,
-            name: item.cafe.name,
+            id: item.id,
+            name: item.name,
             image: '/Somedays.jpg',
           }
         } else {

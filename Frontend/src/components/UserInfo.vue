@@ -21,7 +21,7 @@
       <!-- Profile Header -->
       <div class="flex flex-col items-center w-full max-w-3xl mx-auto mb-10">
         <div class="relative w-24 h-24 mb-4 overflow-hidden bg-gray-300 rounded-full group">
-          <img v-if="userStore.user.profilePicture" :src="`http://localhost:8000/uploads/${userStore.user.profilePicture}`" alt="Profile Picture" class="object-cover w-full h-full" />  
+          <img v-if="userStore.user.profilePicture" :src="userStore.user.profilePicture" alt="Profile Picture" class="object-cover w-full h-full" />
           <div v-else class="flex items-center justify-center w-full h-full bg-[#A37550] text-white text-2xl font-bold">
           {{ userInitials }}
         </div>
@@ -158,16 +158,10 @@ const handleFileUpload = async (event) => {
       throw new Error('Failed to update profile picture');
     }
     
-    const responseData = await response.json();
-    
-    // Update the local state and store with the URL returned from the server
-    user.value.profilePicture = responseData.data.profile_picture;
-    userStore.setUser({
-      ...userStore.user,
-      profilePicture: responseData.data.profile_picture
-    });
-    
-    // Clear error message
+    await response.json();
+
+    await userStore.fetchUserProfile();
+    user.value = userStore.user;
     error.value = '';
     
   } catch (uploadError) {

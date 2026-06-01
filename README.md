@@ -91,5 +91,5 @@ Both servers must be running at the same time for the app to work. The backend r
 ---
 
 <div align="center">
-  <sub>De La Salle University – Dasmariñas</sub>
+  <sub>De La Salle University – Dasmariñas &nbsp;·&nbsp; S-ITCS227 Application Development and Emerging Technologies</sub>
 </div>

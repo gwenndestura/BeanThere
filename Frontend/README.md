@@ -149,5 +149,5 @@ npm run preview
 ---
 
 <div align="center">
-  <sub>De La Salle University – Dasmariñas</sub>
+  <sub>De La Salle University – Dasmariñas &nbsp;·&nbsp; S-ITCS227 Application Development and Emerging Technologies</sub>
 </div>

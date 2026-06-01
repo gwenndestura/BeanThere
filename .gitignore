@@ -1,0 +1,25 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.log
+bean_there_db
+media/
+.venv/
+venv/
+*.egg-info/
+
+# Node / Vue
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
+Frontend/.vite-temp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
